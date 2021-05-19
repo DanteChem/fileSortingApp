@@ -36,12 +36,9 @@ namespace fileSortingApp
                 Directory.CreateDirectory(pathForUnzipping + "Data_files"); // sub-folder in shortFileName for data
                 string[] filesArray = Directory.GetFiles(pathForUnzipping); // files list in shortFileName folder 
                 string pathForImages = Path.Combine(pathForUnzipping, "Pic_files") + @"\";
-                //string pathForImages = Path.Combine(pathForUnzipping, "Pic_files");
                 string pathForData = Path.Combine(pathForUnzipping, "Data_files") + @"\";
-                //string pathForData = Path.Combine(pathForUnzipping, "Data_files");
 
                 // loop for sorting files in shortFileName folder to pic_files and data_files sub-folder
-
                 foreach (string fileImageOrData in filesArray)
                 {
                     var fileExtension = Path.GetExtension(fileImageOrData); // get files extension 
