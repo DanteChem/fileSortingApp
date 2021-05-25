@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Collections;
-using System.IO.Compression;
 
 namespace fileSortingApp
 {
-    class Program
+    public class ArchiveSorter
     {
-        // original sorting algoritm without any UI and all paths are hard-coded
-        static void Main(string[] args)
+        public void Sort(string folderForSorting, string pathForUnzipping)
         {
             // variables list
-            string folderForSorting = @"D:\C_Sharp\my projects\files for sorting\"; // initial folder with *.zip files
+           // string folderForSorting = @"D:\C_Sharp\my projects\files for sorting\"; // initial folder with *.zip files
             string[] filesToSort = Directory.GetFiles(folderForSorting); // files list/array from initial folder
 
             // main loop
@@ -23,15 +21,16 @@ namespace fileSortingApp
             {
                 string shortFileName = Path.GetFileNameWithoutExtension(fileName); // getting files name without extension (reqired for folders name)
                 string fileNameForCopy = Path.GetFileName(fileName); // file name with extension
-                if(!Directory.Exists(folderForSorting + shortFileName)) // existing folder check
-                {
-                    Directory.CreateDirectory(folderForSorting + shortFileName);
-                } 
-                else
-                {
-                    Console.WriteLine($"{shortFileName} folder is already exist");
-                }
-                string pathForUnzipping = Path.Combine(folderForSorting, shortFileName) + @"\"; // path for unzipping
+                //if (!Directory.Exists(folderForSorting + shortFileName)) // existing folder check
+                //{
+                //    Directory.CreateDirectory(folderForSorting + shortFileName);
+                //}
+                //else
+                //{
+                //    Console.WriteLine($"{shortFileName} folder is already exist");
+                //}
+                //string pathForUnzipping = Path.Combine(folderForSorting, shortFileName) + @"\"; // path for unzipping
+                pathForUnzipping = pathForUnzipping + @"\";
                 ZipFile.ExtractToDirectory(fileName, pathForUnzipping);
                 //Directory.CreateDirectory(pathForUnzipping + "Pic_files"); // sub-folder in shortFileName folder for picture
                 Directory.CreateDirectory(pathForUnzipping + "Data_files"); // sub-folder in shortFileName for data
@@ -43,7 +42,7 @@ namespace fileSortingApp
                 foreach (string fileImageOrData in filesArray)
                 {
                     var fileExtension = Path.GetExtension(fileImageOrData); // get files extension 
-                    string fileNameForSorting = Path.GetFileName(fileImageOrData); 
+                    string fileNameForSorting = Path.GetFileName(fileImageOrData);
                     switch (fileExtension)
                     {
                         case ".jpg":
@@ -51,7 +50,7 @@ namespace fileSortingApp
                         case ".gif":
                         case ".tif":
                         case ".png":
-                          //  File.Move(fileImageOrData, pathForImages + fileNameForSorting); // moving images to folder or leave them in root
+                            //  File.Move(fileImageOrData, pathForImages + fileNameForSorting); // moving images to folder or leave them in root
                             break;
 
                         default:
@@ -64,12 +63,6 @@ namespace fileSortingApp
                 ZipFile.CreateFromDirectory(pathForData, pathForDataRecompression, CompressionLevel.Optimal, true);
                 Directory.Delete(pathForData, true);
             }
-
         }
-        public static void someMethod() // reserved 
-        {
-
-        }
-
     }
 }
