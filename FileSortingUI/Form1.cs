@@ -38,8 +38,27 @@ namespace FileSortingUI
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            var sort = new ArchiveSorter();
-            sort.Sort(textBox1.Text, textBox2.Text);
+            var sort = new ArchiveSorter(); // create instanse of my core sorting method
+            var checkBoxOn = new CheckBox1();
+            sort.Sort(textBox1.Text, textBox2.Text);  // set to the method 2 string variables from textBox(es)
+            if (checkBox1.Checked)
+            {
+                checkBoxOn.FilesDeleter(textBox1.Text);
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            //var checkBoxOn = new CheckBox1();
+            //if (checkBox1.Checked)
+            //{
+            //    checkBoxOn.FilesDeleter(textBox1.Text);
+            //}
         }
 
 
