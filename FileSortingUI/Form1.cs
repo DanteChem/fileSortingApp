@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,23 +15,24 @@ namespace FileSortingUI
 {
     public partial class Form1 : Form
     {
+        public int zipCounter; // add this variable for progress-bar 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void initialPathSelect_Click(object sender, EventArgs e)
         {
 
             var dialogResult = folderBrowserDialog1.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
-                textBox1.Text = folderBrowserDialog1.SelectedPath;
+                initialPathTextBox.Text = folderBrowserDialog1.SelectedPath;
             }
 
-            string pathFromDialogBox1 = textBox1.Text;
+            string pathFromDialogBox1 = initialPathTextBox.Text;
             string[] doesSourceHasZip = Directory.GetFiles(pathFromDialogBox1);
-            int zipCounter = 0;
+            zipCounter = 0; // originally it was "int zipCounter = 0"
             foreach (string fileInDialog1Folder in doesSourceHasZip)
             {
                 var fileExtensionCheck = Path.GetExtension(fileInDialog1Folder);
@@ -41,28 +43,37 @@ namespace FileSortingUI
             }
             if (zipCounter == 0)
             {
-                textBox3.Text += $"The folder {pathFromDialogBox1} does not contain Zip-files";
+                infoTextBox.Text += $"The folder {pathFromDialogBox1} does not contain Zip-files";
             }
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void sourcePathSelect_Click(object sender, EventArgs e)
         {
             var dialogResult2 = folderBrowserDialog1.ShowDialog();
             if (dialogResult2 == DialogResult.OK)
             {
-                textBox2.Text = folderBrowserDialog1.SelectedPath;
+                sourcePathTextBox.Text = folderBrowserDialog1.SelectedPath;
             }
 
         }
-        private void button3_Click(object sender, EventArgs e)
+        private void startSortingButton_Click(object sender, EventArgs e)
         {
             var sort = new ArchiveSorter(); // create instanse of my core sorting method
             var checkBoxOn = new CheckBox1();
-            sort.Sort(textBox1.Text, textBox2.Text);  // set to the method 2 string variables from textBox(es)
+            sort.Sort(initialPathTextBox.Text, sourcePathTextBox.Text);  // set to the method 2 string variables from textBox(es)
             if (checkBox1.Checked)
             {
-                checkBoxOn.FilesDeleter(textBox1.Text);
+                checkBoxOn.FilesDeleter(initialPathTextBox.Text);
+            }
+
+            // progress bar 
+            sortingProgressBar.Step = 1;
+            sortingProgressBar.Maximum = zipCounter; // have to pickup values from method above
+            for (int i = 0; i < sortingProgressBar.Maximum; i++)
+            {
+                Thread.Sleep(100);
+                sortingProgressBar.PerformStep();
             }
         }
 
@@ -80,11 +91,21 @@ namespace FileSortingUI
             //}
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void infoTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            initialPathTextBox.Clear();
+            sourcePathTextBox.Clear();
+        }
 
     }
 

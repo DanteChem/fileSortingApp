@@ -29,75 +29,77 @@ namespace FileSortingUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.initialPathSelect = new System.Windows.Forms.Button();
+            this.initialPathTextBox = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.sourcePathSelect = new System.Windows.Forms.Button();
+            this.sourcePathTextBox = new System.Windows.Forms.TextBox();
+            this.startSortingButton = new System.Windows.Forms.Button();
+            this.initialPathSelectLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.infoTextBox = new System.Windows.Forms.TextBox();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.sortingProgressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
-            // button1
+            // initialPathSelect
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(56, 42);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 32);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Browse:";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.initialPathSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.initialPathSelect.Location = new System.Drawing.Point(56, 42);
+            this.initialPathSelect.Name = "initialPathSelect";
+            this.initialPathSelect.Size = new System.Drawing.Size(109, 32);
+            this.initialPathSelect.TabIndex = 0;
+            this.initialPathSelect.Text = "Browse:";
+            this.initialPathSelect.UseVisualStyleBackColor = true;
+            this.initialPathSelect.Click += new System.EventHandler(this.initialPathSelect_Click);
             // 
-            // textBox1
+            // initialPathTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(53, 80);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(434, 22);
-            this.textBox1.TabIndex = 1;
+            this.initialPathTextBox.Location = new System.Drawing.Point(53, 80);
+            this.initialPathTextBox.Name = "initialPathTextBox";
+            this.initialPathTextBox.Size = new System.Drawing.Size(434, 22);
+            this.initialPathTextBox.TabIndex = 1;
             // 
-            // button2
+            // sourcePathSelect
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(53, 154);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 32);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Browse:";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.sourcePathSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sourcePathSelect.Location = new System.Drawing.Point(53, 154);
+            this.sourcePathSelect.Name = "sourcePathSelect";
+            this.sourcePathSelect.Size = new System.Drawing.Size(109, 32);
+            this.sourcePathSelect.TabIndex = 2;
+            this.sourcePathSelect.Text = "Browse:";
+            this.sourcePathSelect.UseVisualStyleBackColor = true;
+            this.sourcePathSelect.Click += new System.EventHandler(this.sourcePathSelect_Click);
             // 
-            // textBox2
+            // sourcePathTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(53, 192);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(434, 22);
-            this.textBox2.TabIndex = 3;
+            this.sourcePathTextBox.Location = new System.Drawing.Point(53, 192);
+            this.sourcePathTextBox.Name = "sourcePathTextBox";
+            this.sourcePathTextBox.Size = new System.Drawing.Size(434, 22);
+            this.sourcePathTextBox.TabIndex = 3;
             // 
-            // button3
+            // startSortingButton
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(56, 280);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 38);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Start sorting";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.startSortingButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.startSortingButton.Location = new System.Drawing.Point(56, 280);
+            this.startSortingButton.Name = "startSortingButton";
+            this.startSortingButton.Size = new System.Drawing.Size(109, 38);
+            this.startSortingButton.TabIndex = 4;
+            this.startSortingButton.Text = "Start sorting";
+            this.startSortingButton.UseVisualStyleBackColor = true;
+            this.startSortingButton.Click += new System.EventHandler(this.startSortingButton_Click);
             // 
-            // label1
+            // initialPathSelectLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(52, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(304, 20);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Select the folder with compressed files:";
+            this.initialPathSelectLabel.AutoSize = true;
+            this.initialPathSelectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.initialPathSelectLabel.Location = new System.Drawing.Point(52, 19);
+            this.initialPathSelectLabel.Name = "initialPathSelectLabel";
+            this.initialPathSelectLabel.Size = new System.Drawing.Size(304, 20);
+            this.initialPathSelectLabel.TabIndex = 5;
+            this.initialPathSelectLabel.Text = "Select the folder with compressed files:";
             // 
             // label2
             // 
@@ -122,38 +124,59 @@ namespace FileSortingUI
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // button4
+            // cancelButton
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button4.Location = new System.Drawing.Point(392, 280);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 38);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Cancel";
-            this.button4.UseVisualStyleBackColor = true;
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cancelButton.Location = new System.Drawing.Point(392, 280);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(95, 38);
+            this.cancelButton.TabIndex = 8;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // textBox3
+            // infoTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 347);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(581, 134);
-            this.textBox3.TabIndex = 9;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.infoTextBox.Location = new System.Drawing.Point(28, 382);
+            this.infoTextBox.Multiline = true;
+            this.infoTextBox.Name = "infoTextBox";
+            this.infoTextBox.Size = new System.Drawing.Size(496, 99);
+            this.infoTextBox.TabIndex = 9;
+            this.infoTextBox.TextChanged += new System.EventHandler(this.infoTextBox_TextChanged);
+            // 
+            // clearButton
+            // 
+            this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.clearButton.Location = new System.Drawing.Point(220, 280);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(107, 38);
+            this.clearButton.TabIndex = 10;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
+            // sortingProgressBar
+            // 
+            this.sortingProgressBar.Location = new System.Drawing.Point(28, 345);
+            this.sortingProgressBar.Name = "sortingProgressBar";
+            this.sortingProgressBar.Size = new System.Drawing.Size(496, 23);
+            this.sortingProgressBar.TabIndex = 11;
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(605, 493);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button4);
+            this.ClientSize = new System.Drawing.Size(552, 493);
+            this.Controls.Add(this.sortingProgressBar);
+            this.Controls.Add(this.clearButton);
+            this.Controls.Add(this.infoTextBox);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.initialPathSelectLabel);
+            this.Controls.Add(this.startSortingButton);
+            this.Controls.Add(this.sourcePathTextBox);
+            this.Controls.Add(this.sourcePathSelect);
+            this.Controls.Add(this.initialPathTextBox);
+            this.Controls.Add(this.initialPathSelect);
             this.Name = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -162,17 +185,19 @@ namespace FileSortingUI
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button initialPathSelect;
+        private System.Windows.Forms.TextBox initialPathTextBox;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button sourcePathSelect;
+        private System.Windows.Forms.TextBox sourcePathTextBox;
+        private System.Windows.Forms.Button startSortingButton;
+        private System.Windows.Forms.Label initialPathSelectLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.TextBox infoTextBox;
+        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.ProgressBar sortingProgressBar;
     }
 }
 

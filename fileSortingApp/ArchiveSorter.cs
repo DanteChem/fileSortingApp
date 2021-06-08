@@ -15,7 +15,6 @@ namespace fileSortingApp
             try
             {
                 // variables list
-                // string folderForSorting = @"D:\C_Sharp\my projects\files for sorting\"; // initial folder with *.zip files
                 string[] filesToSort = Directory.GetFiles(folderForSorting); // files list/array from initial folder
 
                 // main loop
@@ -23,22 +22,20 @@ namespace fileSortingApp
                 {
                     string shortFileName = Path.GetFileNameWithoutExtension(fileName); // getting files name without extension (reqired for folders name)
                     string fileNameForCopy = Path.GetFileName(fileName); // file name with extension
-                                                                         //if (!Directory.Exists(folderForSorting + shortFileName)) // existing folder check
-                                                                         //{
-                                                                         //    Directory.CreateDirectory(folderForSorting + shortFileName);
-                                                                         //}
-                                                                         //else
-                                                                         //{
-                                                                         //    Console.WriteLine($"{shortFileName} folder is already exist");
-                                                                         //}
-                                                                         //string pathForUnzipping = Path.Combine(folderForSorting, shortFileName) + @"\"; // path for unzipping
+
                     pathForUnzipping = pathForUnzipping + @"\";
-                    ZipFile.ExtractToDirectory(fileName, pathForUnzipping);
-                    //Directory.CreateDirectory(pathForUnzipping + "Pic_files"); // sub-folder in shortFileName folder for picture
-                    Directory.CreateDirectory(pathForUnzipping + "Data_files"); // sub-folder in shortFileName for data
-                    string[] filesArray = Directory.GetFiles(pathForUnzipping); // files list in shortFileName folder 
-                                                                                //string pathForImages = Path.Combine(pathForUnzipping, "Pic_files") + @"\";
-                    string pathForData = Path.Combine(pathForUnzipping, "Data_files") + @"\";
+                    string pathForUnzippingSub = Path.Combine(pathForUnzipping, shortFileName);
+                    pathForUnzippingSub = pathForUnzippingSub + @"\";
+                    ZipFile.ExtractToDirectory(fileName, pathForUnzippingSub);
+                    Directory.CreateDirectory(pathForUnzippingSub + "Data_files");
+                    string[] filesArray = Directory.GetFiles(pathForUnzippingSub);
+                    string pathForData = Path.Combine(pathForUnzippingSub, "Data_files") + @"\";
+
+                    //pathForUnzipping = pathForUnzipping + @"\";
+                    //ZipFile.ExtractToDirectory(fileName, pathForUnzipping);
+                    //Directory.CreateDirectory(pathForUnzipping + "Data_files"); // sub-folder in shortFileName for data
+                    //string[] filesArray = Directory.GetFiles(pathForUnzipping); // files list in shortFileName folder 
+                    //string pathForData = Path.Combine(pathForUnzipping, "Data_files") + @"\";
 
                     // loop for sorting files in shortFileName folder to pic_files and data_files sub-folder
                     foreach (string fileImageOrData in filesArray)
@@ -62,15 +59,30 @@ namespace fileSortingApp
                     }
 
                     // Re-compress Data_files folder and delete Data_files folder after compression
-                    var pathForDataRecompression = Path.Combine(pathForUnzipping, "dataFiles.zip");
+                    var pathForDataRecompression = Path.Combine(pathForUnzippingSub, "dataFiles.zip");
                     ZipFile.CreateFromDirectory(pathForData, pathForDataRecompression, CompressionLevel.Optimal, true);
                     Directory.Delete(pathForData, true);
+
+                    //var pathForDataRecompression = Path.Combine(pathForUnzipping, "dataFiles.zip");
+                    //ZipFile.CreateFromDirectory(pathForData, pathForDataRecompression, CompressionLevel.Optimal, true);
+                    //Directory.Delete(pathForData, true);
                 }
             }
             catch
             {
-               
+
             }
         }
+
+        // Folder exsist check
+        //if (!Directory.Exists(folderForSorting + shortFileName)) // existing folder check
+        //{
+        //    Directory.CreateDirectory(folderForSorting + shortFileName);
+        //}
+        //else
+        //{
+        //    Console.WriteLine($"{shortFileName} folder is already exist");
+        //}
+        //string pathForUnzipping = Path.Combine(folderForSorting, shortFileName) + @"\"; // path for unzipping
     }
 }
