@@ -8,13 +8,81 @@ using System.Threading.Tasks;
 
 namespace fileSortingApp
 {
+    public class AnotherSorter
+    {
+        private readonly ILogger _logger;
+        public AnotherSorter(ILogger logger)
+        {
+            _logger = logger;
+        }
+
+        public void Sort(string sourceFolder, string targetFolder)
+        {
+            try
+            {
+                var filesToSort = Directory.GetFiles(sourceFolder);
+
+                _logger.LogString($"Found {filesToSort.Length} files(s) to process");
+
+                foreach (var fileToSort in filesToSort)
+                {
+                    _logger.LogString($"Processing {fileToSort}");
+
+                    // Create a folder per file
+                    var shortFileName = Path.GetFileNameWithoutExtension(fileToSort);
+                    var unzipFolder = Path.Combine(targetFolder, shortFileName);
+
+                    ZipFile.ExtractToDirectory(fileToSort, unzipFolder);
+
+                    var dataFolder = Path.Combine(unzipFolder, "Data_files");
+                    if (!Directory.Exists(dataFolder))
+                    {
+                        Directory.CreateDirectory(dataFolder);
+                    }
+
+                    var unzippedFiles = Directory.GetFiles(unzipFolder);
+
+                    foreach (var filepath in unzippedFiles)
+                    {
+                        var fileExtension = Path.GetExtension(filepath);
+                        var filename = Path.GetFileName(filepath);
+                        switch (fileExtension)
+                        {
+                            case ".jpg":
+                            case ".bmp":
+                            case ".gif":
+                            case ".tif":
+                            case ".png":
+                                //  File.Move(fileImageOrData, pathForImages + fileNameForSorting); // moving images to folder or leave them in root
+                                break;
+
+                            default:
+                                File.Move(filepath, Path.Combine(dataFolder, filename));
+                                break;
+                        }
+                    }
+
+                    // Re-compress Data_files folder and delete Data_files folder after compression
+                    var pathForDataRecompression = Path.Combine(unzipFolder, "dataFiles.zip");
+                    ZipFile.CreateFromDirectory(dataFolder, pathForDataRecompression, CompressionLevel.Optimal, true);
+                    Directory.Delete(dataFolder, true);
+
+                    _logger.LogString($"Done processing {fileToSort}");
+                }
+
+                _logger.LogString("Done");
+            }
+            catch (Exception exception)
+            {
+                _logger.LogString(exception.Message);
+            }
+        }
+
+    }
+
+
     public class ArchiveSorter
     {
-        //public ArchiveSorter () // конструктор для текст бокса
-        //{
-
-        //}
-
         public void Sort(string folderForSorting, string pathForUnzipping)
         {
             try

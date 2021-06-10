@@ -64,7 +64,10 @@ namespace FileSortingUI
         }
         private void startSortingButton_Click(object sender, EventArgs e)
         {
-            var sort = new ArchiveSorter(); // create instanse of my core sorting method
+            //var sort = new ArchiveSorter(); // create instanse of my core sorting method
+            var notifier = new Logger(infoTextBox);
+            var sort = new AnotherSorter(notifier); // create instanse of my core sorting method
+            
             var checkBoxOn = new CheckBox1();
             sort.Sort(initialPathTextBox.Text, sourcePathTextBox.Text);  // set to the method 2 string variables from textBox(es)
             if (checkBox1.Checked)
