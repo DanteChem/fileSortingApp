@@ -1,7 +1,0 @@
-D:\C_Sharp\my projects\fileSorting_ver1\fileSortingApp\fileSortingApp\bin\Debug\fileSortingApp.pdb
-D:\C_Sharp\my projects\fileSorting_ver1\fileSortingApp\fileSortingApp\obj\Debug\fileSortingApp.csprojAssemblyReference.cache
-D:\C_Sharp\my projects\fileSorting_ver1\fileSortingApp\fileSortingApp\obj\Debug\fileSortingApp.csproj.CoreCompileInputs.cache
-D:\C_Sharp\my projects\fileSorting_ver1\fileSortingApp\fileSortingApp\obj\Debug\fileSortingApp.pdb
-D:\C_Sharp\my projects\fileSorting_ver1\fileSortingApp\fileSortingApp\bin\Debug\fileSortingApp.exe.config
-D:\C_Sharp\my projects\fileSorting_ver1\fileSortingApp\fileSortingApp\bin\Debug\fileSortingApp.exe
-D:\C_Sharp\my projects\fileSorting_ver1\fileSortingApp\fileSortingApp\obj\Debug\fileSortingApp.exe
