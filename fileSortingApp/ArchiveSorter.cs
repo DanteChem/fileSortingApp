@@ -10,6 +10,11 @@ namespace fileSortingApp
 {
     public class ArchiveSorter
     {
+        //public ArchiveSorter () // конструктор для текст бокса
+        //{
+
+        //}
+
         public void Sort(string folderForSorting, string pathForUnzipping)
         {
             try
@@ -27,15 +32,14 @@ namespace fileSortingApp
                     string pathForUnzippingSub = Path.Combine(pathForUnzipping, shortFileName);
                     pathForUnzippingSub = pathForUnzippingSub + @"\";
                     ZipFile.ExtractToDirectory(fileName, pathForUnzippingSub);
+
+                    //
+                    //Folder exist check place-holder
+                    //
+
                     Directory.CreateDirectory(pathForUnzippingSub + "Data_files");
                     string[] filesArray = Directory.GetFiles(pathForUnzippingSub);
                     string pathForData = Path.Combine(pathForUnzippingSub, "Data_files") + @"\";
-
-                    //pathForUnzipping = pathForUnzipping + @"\";
-                    //ZipFile.ExtractToDirectory(fileName, pathForUnzipping);
-                    //Directory.CreateDirectory(pathForUnzipping + "Data_files"); // sub-folder in shortFileName for data
-                    //string[] filesArray = Directory.GetFiles(pathForUnzipping); // files list in shortFileName folder 
-                    //string pathForData = Path.Combine(pathForUnzipping, "Data_files") + @"\";
 
                     // loop for sorting files in shortFileName folder to pic_files and data_files sub-folder
                     foreach (string fileImageOrData in filesArray)
@@ -62,10 +66,6 @@ namespace fileSortingApp
                     var pathForDataRecompression = Path.Combine(pathForUnzippingSub, "dataFiles.zip");
                     ZipFile.CreateFromDirectory(pathForData, pathForDataRecompression, CompressionLevel.Optimal, true);
                     Directory.Delete(pathForData, true);
-
-                    //var pathForDataRecompression = Path.Combine(pathForUnzipping, "dataFiles.zip");
-                    //ZipFile.CreateFromDirectory(pathForData, pathForDataRecompression, CompressionLevel.Optimal, true);
-                    //Directory.Delete(pathForData, true);
                 }
             }
             catch
@@ -73,6 +73,8 @@ namespace fileSortingApp
 
             }
         }
+
+        // temporary code block 
 
         // Folder exsist check
         //if (!Directory.Exists(folderForSorting + shortFileName)) // existing folder check
@@ -84,5 +86,16 @@ namespace fileSortingApp
         //    Console.WriteLine($"{shortFileName} folder is already exist");
         //}
         //string pathForUnzipping = Path.Combine(folderForSorting, shortFileName) + @"\"; // path for unzipping
+
+        // sorting without sub-folders 
+        //pathForUnzipping = pathForUnzipping + @"\";
+        //ZipFile.ExtractToDirectory(fileName, pathForUnzipping);
+        //Directory.CreateDirectory(pathForUnzipping + "Data_files"); // sub-folder in shortFileName for data
+        //string[] filesArray = Directory.GetFiles(pathForUnzipping); // files list in shortFileName folder 
+        //string pathForData = Path.Combine(pathForUnzipping, "Data_files") + @"\";
+
+        //var pathForDataRecompression = Path.Combine(pathForUnzipping, "dataFiles.zip");
+        //ZipFile.CreateFromDirectory(pathForData, pathForDataRecompression, CompressionLevel.Optimal, true);
+        //Directory.Delete(pathForData, true);
     }
 }

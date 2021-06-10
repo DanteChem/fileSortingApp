@@ -28,24 +28,30 @@ namespace FileSortingUI
             if (dialogResult == DialogResult.OK)
             {
                 initialPathTextBox.Text = folderBrowserDialog1.SelectedPath;
-            }
 
-            string pathFromDialogBox1 = initialPathTextBox.Text;
-            string[] doesSourceHasZip = Directory.GetFiles(pathFromDialogBox1);
-            zipCounter = 0; // originally it was "int zipCounter = 0"
-            foreach (string fileInDialog1Folder in doesSourceHasZip)
-            {
-                var fileExtensionCheck = Path.GetExtension(fileInDialog1Folder);
-                if (fileExtensionCheck == ".zip")
+                //cancel-fix in dialog box block start
+                string pathFromDialogBox1 = initialPathTextBox.Text;
+                string[] doesSourceHasZip = Directory.GetFiles(pathFromDialogBox1);
+                zipCounter = 0; // originally it was "int zipCounter = 0"
+                foreach (string fileInDialog1Folder in doesSourceHasZip)
                 {
-                    zipCounter = zipCounter + 1;
+                    var fileExtensionCheck = Path.GetExtension(fileInDialog1Folder);
+                    if (fileExtensionCheck == ".zip")
+                    {
+                        zipCounter = zipCounter + 1;
+                    }
                 }
+                if (zipCounter == 0)
+                {
+                    infoTextBox.Text += $"The folder {pathFromDialogBox1} does not contain Zip-files";
+                }
+                //cancel-fix in dialog box block end
             }
-            if (zipCounter == 0)
+            else
             {
-                infoTextBox.Text += $"The folder {pathFromDialogBox1} does not contain Zip-files";
+                dialogResult = DialogResult.Cancel;
             }
-
+            // cancel-fix bloack was taken from this place
         }
 
         private void sourcePathSelect_Click(object sender, EventArgs e)
@@ -55,7 +61,6 @@ namespace FileSortingUI
             {
                 sourcePathTextBox.Text = folderBrowserDialog1.SelectedPath;
             }
-
         }
         private void startSortingButton_Click(object sender, EventArgs e)
         {
@@ -67,7 +72,7 @@ namespace FileSortingUI
                 checkBoxOn.FilesDeleter(initialPathTextBox.Text);
             }
 
-            // progress bar 
+            // progress bar (does not work correct) 
             sortingProgressBar.Step = 1;
             sortingProgressBar.Maximum = zipCounter; // have to pickup values from method above
             for (int i = 0; i < sortingProgressBar.Maximum; i++)
@@ -93,7 +98,7 @@ namespace FileSortingUI
 
         private void infoTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
